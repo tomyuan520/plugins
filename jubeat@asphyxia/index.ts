@@ -15,17 +15,38 @@ export async function register() {
     R.Route("gametop.get_pdata", getProfile);
     R.Route("gametop.get_mdata", loadScore);
     R.Route("gametop.get_meeting", Meeting);
+	// ave routes 
+	R.Route("gametop_ave.regist",getProfile);
+    R.Route("gametop_ave.get_info", Getinfo);
+	R.Route("demodata_ave.get_info", Getinfo);
+    R.Route("gametop_ave.get_pdata", getProfile);
+    R.Route("gametop_ave.get_mdata", loadScore);
+    R.Route("gametop_ave.get_meeting", Meeting);
   
-    R.Route("gameend.final", true);
+    
+	R.Route("gameend.final", true);
     R.Route("gameend.regist", saveProfile);
-
-    R.Route("shopinfo.regist", ShopInfo);
+	// ave routes
+	R.Route("gameend_ave.final", true);
+    R.Route("gameend_ave.regist", saveProfile);
+    
+	R.Route("shopinfo.regist", ShopInfo);
     R.Route("lobby.check", Check);
     R.Route("lobby.entry", Entry);
     R.Route("lobby.refresh", Refresh);
     R.Route("lobby.report", Report);
+	// ave routes
+	R.Route("shopinfo_ave.regist", ShopInfo);
+	R.Route("shopinfo_ave.regist", ShopInfo);
+    R.Route("lobby_ave.check", Check);
+    R.Route("lobby_ave.entry", Entry);
+    R.Route("lobby_ave.refresh", Refresh);
+    R.Route("lobby_ave.report", Report);
+  
   
     R.Route("netlog.send", true);
     R.Route("logger.report", true);
+	R.Route("netlog_ave.send", true);
+    R.Route("logger_ave.report", true);
     R.Unhandled();
   }
