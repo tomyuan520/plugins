@@ -18,11 +18,11 @@ module.exports = async (data: Profile) => ({
     mtg_result: K.ITEM("u8", 0),
     bonus_tune_points: K.ITEM("s32", data?.bonusPoints || 0),
     is_bonus_tune_played: K.ITEM("bool", data?.isBonusPlayed || false),
-    last_play_time: K.ITEM("s64", data?.lastPlayTime || 0),
+    last_play_time: K.ITEM("s32", data?.lastPlayTime || 0),
   },
 
   last: {
-    play_time: K.ITEM("s64", data?.lastPlayTime || 0),
+    play_time: K.ITEM("s32", data?.lastPlayTime || 0),
     shopname: K.ITEM("str", data.lastShopname),
     areaname: K.ITEM("str", data.lastAreaname),   
     music_id: K.ITEM("s32", data.musicId || 0),
@@ -112,7 +112,7 @@ module.exports = async (data: Profile) => ({
   team_battle: {},
   server: {},
   course_list: {
-      course: await (async () =>{
+      course: await (async () => {
         let courseData = await DB.Find<Course>(data.__refid, { collection: "course" });
         let courseStatus = {};
         courseData.forEach(course =>{

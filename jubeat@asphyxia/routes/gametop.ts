@@ -74,11 +74,12 @@ export const loadScore = async (info, data, send) => {
   } = {};
 
   for (const score of scores) {
+    const isHard = +!!score.isHardMode & 1;
     if (!scoreData[score.musicId]) {
       scoreData[score.musicId] = {};
     }
-    if(!scoreData[score.musicId][score.isHardMode & 1]) {
-      scoreData[score.musicId][score.isHardMode & 1] = {
+    if(!scoreData[score.musicId][isHard]) {
+      scoreData[score.musicId][isHard] = {
         musicRate: [0, 0, 0],
         playCnt: [0, 0, 0],
         clearCnt: [0, 0, 0],
@@ -91,7 +92,7 @@ export const loadScore = async (info, data, send) => {
     }
     
 
-    const data = scoreData[score.musicId][score.isHardMode & 1];
+    const data = scoreData[score.musicId][isHard];
     data.musicRate[score.seq] = score.musicRate;
     data.playCnt[score.seq] = score.playCount;
     data.clearCnt[score.seq] = score.clearCount;
@@ -142,7 +143,7 @@ export const loadScore = async (info, data, send) => {
       data:{
         player:{
           jid: K.ITEM("s32", jubeatId),
-          mdata_list: []
+          mdata_list: {music: []}
         }
       }
     }
